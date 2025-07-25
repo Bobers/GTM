@@ -1,0 +1,7 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "cd gtm-navigator && npm install && npm run build",
+  "outputDirectory": "gtm-navigator/.next",
+  "installCommand": "cd gtm-navigator && npm install",
+  "devCommand": "cd gtm-navigator && npm run dev"
+}
