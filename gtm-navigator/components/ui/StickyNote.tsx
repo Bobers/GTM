@@ -16,8 +16,9 @@ export default function StickyNote({ value, onChange, placeholder, className = '
       className={`
         bg-yellow-200 border-2 border-yellow-300 rounded-md p-3
         text-gray-800 resize-none h-24 w-full
-        focus:outline-none focus:border-yellow-400
-        hover:shadow-md transition-shadow
+        focus:outline-none focus:border-yellow-400 focus:shadow-lg
+        hover:shadow-md transition-all duration-200
+        sticky-note-animate
         ${className}
       `}
     />

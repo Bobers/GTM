@@ -24,3 +24,29 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Card hover effects */
+.card-hover {
+  transition: all 200ms;
+}
+
+.card-hover:hover {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  transform: scale(1.02);
+}
+
+/* Sticky note animations */
+@keyframes sticky-note-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.95) rotate(-2deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.sticky-note-animate {
+  animation: sticky-note-enter 0.3s ease-out;
+}

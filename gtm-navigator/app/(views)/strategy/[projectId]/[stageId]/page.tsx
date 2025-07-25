@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useProjectStore } from '@/state/projectStore';
 import { ArrowLeft } from 'lucide-react';
@@ -7,10 +8,12 @@ import BeachheadStrategyBox from '@/components/strategy/BeachheadStrategyBox';
 import ValidationMethodsBox from '@/components/strategy/ValidationMethodsBox';
 import GtmMotionsBox from '@/components/strategy/GtmMotionsBox';
 import StrategyRationaleBox from '@/components/strategy/StrategyRationaleBox';
+import BadgeModal from '@/components/modals/BadgeModal';
 
 export default function StrategyPage() {
   const params = useParams();
   const router = useRouter();
+  const [showBadge, setShowBadge] = useState(false);
   const projectId = params.projectId as string;
   const stageId = parseInt(params.stageId as string);
   
@@ -41,7 +44,10 @@ export default function StrategyPage() {
 
   const handleCompleteStage = () => {
     useProjectStore.getState().completeActiveStage(projectId);
-    router.push(`/stages/${projectId}`);
+    setShowBadge(true);
+    setTimeout(() => {
+      router.push(`/stages/${projectId}`);
+    }, 3000);
   };
 
   return (
@@ -93,6 +99,13 @@ export default function StrategyPage() {
             Mark Stage as Complete
           </button>
         </div>
+
+        {/* Badge Modal */}
+        <BadgeModal
+          isOpen={showBadge}
+          onClose={() => setShowBadge(false)}
+          stageIndex={stageId}
+        />
       </div>
     </div>
   );
