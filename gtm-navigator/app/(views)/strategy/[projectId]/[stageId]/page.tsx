@@ -26,7 +26,7 @@ export default function StrategyPage() {
     );
   }
 
-  const stage = project.stages[stageId];
+  // const stage = project.stages[stageId]; // Currently unused but may be needed later
   const stageNames = [
     "Proof of concept",
     "Proof of monetization",

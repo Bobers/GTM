@@ -9,6 +9,7 @@ import CompetitiveAlternativesBox from '@/components/canvas/CompetitiveAlternati
 import CompetitiveEdgeBox from '@/components/canvas/CompetitiveEdgeBox';
 import PricingBox from '@/components/canvas/PricingBox';
 import GtmObjectiveBox from '@/components/canvas/GtmObjectiveBox';
+import PmfCycleContainer from '@/components/pmf/PmfCycleContainer';
 
 export default function CanvasPage() {
   const params = useParams();
@@ -51,7 +52,10 @@ export default function CanvasPage() {
           <ProductBox projectId={projectId} />
           <div className="bg-white rounded-lg shadow-md p-6">
             <h3 className="text-lg font-semibold mb-4 text-center">The Product-Market Fit cycle</h3>
-            <p className="text-gray-500 text-center">PMF Cycle Diagram (Coming Soon)</p>
+            <PmfCycleContainer 
+              projectId={projectId} 
+              stageIndex={project.stages.findIndex(s => s.status === 'active')}
+            />
           </div>
           <TargetCustomerBox projectId={projectId} />
         </div>
