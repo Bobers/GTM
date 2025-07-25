@@ -9,6 +9,8 @@ interface ProjectStore {
   updateProject: (projectId: string, updates: Partial<GTM_Project>) => void;
   setCurrentProject: (projectId: string) => void;
   getCurrentProject: () => GTM_Project | null;
+  updateStageData: (projectId: string, stageIndex: number, updates: Partial<GTM_Stage_Data>) => void;
+  completeActiveStage: (projectId: string) => void;
 }
 
 // Initialize empty stages
@@ -89,5 +91,65 @@ export const useProjectStore = create<ProjectStore>((set, get) => ({
   getCurrentProject: () => {
     const { projects, currentProjectId } = get();
     return projects.find(p => p.projectId === currentProjectId) || null;
+  },
+
+  updateStageData: (projectId, stageIndex, updates) => {
+    set((state) => ({
+      projects: state.projects.map((project) => {
+        if (project.projectId === projectId) {
+          const newStages = [...project.stages];
+          newStages[stageIndex] = {
+            ...newStages[stageIndex],
+            ...updates
+          };
+          return {
+            ...project,
+            stages: newStages,
+            metadata: {
+              ...project.metadata,
+              lastUpdated: new Date()
+            }
+          };
+        }
+        return project;
+      })
+    }));
+  },
+
+  completeActiveStage: (projectId) => {
+    set((state) => ({
+      projects: state.projects.map((project) => {
+        if (project.projectId === projectId) {
+          const newStages = [...project.stages];
+          const activeIndex = newStages.findIndex(s => s.status === 'active');
+          
+          if (activeIndex !== -1) {
+            // Mark current stage as complete
+            newStages[activeIndex] = {
+              ...newStages[activeIndex],
+              status: 'complete'
+            };
+            
+            // Mark next stage as active if it exists
+            if (activeIndex < newStages.length - 1) {
+              newStages[activeIndex + 1] = {
+                ...newStages[activeIndex + 1],
+                status: 'active'
+              };
+            }
+          }
+          
+          return {
+            ...project,
+            stages: newStages,
+            metadata: {
+              ...project.metadata,
+              lastUpdated: new Date()
+            }
+          };
+        }
+        return project;
+      })
+    }));
   }
 }));
