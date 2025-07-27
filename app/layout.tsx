@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import PersistenceProvider from "@/components/providers/PersistenceProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "GTM Navigator",
-  description: "Interactive workspace for go-to-market strategy",
+  title: "GTM Strategy Slot Machine",
+  description: "Build your complete Go-To-Market strategy",
 };
 
 export default function RootLayout({
@@ -28,9 +27,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <PersistenceProvider>
-          {children}
-        </PersistenceProvider>
+        {children}
       </body>
     </html>
   );

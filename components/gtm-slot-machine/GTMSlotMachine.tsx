@@ -1,12 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, Lock, Unlock, RefreshCw, Shuffle, Save, ChevronRight, ChevronLeft } from 'lucide-react';
+import { Lock, Unlock, RefreshCw, Shuffle, Save, ChevronRight, ChevronLeft } from 'lucide-react';
 
 const GTMSlotMachine = () => {
   const [currentSection, setCurrentSection] = useState(0);
-  const [currentLevel, setCurrentLevel] = useState(0);
-  const [activeSubSection, setActiveSubSection] = useState(null);
   const [lockedSlots, setLockedSlots] = useState<Record<string, boolean>>({});
   const [slots, setSlots] = useState({
     // Customer & Market
