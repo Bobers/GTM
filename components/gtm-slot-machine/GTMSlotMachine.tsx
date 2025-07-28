@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, Lock, Unlock, RefreshCw, Shuffle, Save, ChevronRight, ChevronLeft, Info, CheckCircle, Edit, X } from 'lucide-react';
+import { Lock, Unlock, RefreshCw, Shuffle, Save, ChevronRight, ChevronLeft, Info, CheckCircle, Edit } from 'lucide-react';
 
 const GTMSlotMachine = () => {
   // Product onboarding state
@@ -421,7 +421,7 @@ const GTMSlotMachine = () => {
             <h1 className="text-3xl font-bold mb-2 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               GTM Strategy Builder
             </h1>
-            <p className="text-gray-400">Let's start by defining your product</p>
+            <p className="text-gray-400">Let&apos;s start by defining your product</p>
           </div>
 
           <form onSubmit={handleProductSubmit} className="space-y-6">
